@@ -1,0 +1,133 @@
+index
+========================================================
+author: Mauricio Marcos
+date: 24/02/2021
+autosize: true
+font-import: https://fonts.googleapis.com/css2?family=Ballet&display=swap
+font-family: "Ballet"
+css: custom.css
+
+About RPresentation
+========================================================
+RPresentation is a special Markdown dialect used to create HTML presentations with RStudio.
+
+The file is saved with extension .Rpres and is compiled using RMarkdown and knitr packages.
+
+It generates two files .md and .html.
+The latter may be open in any web browser.
+
+RPresentation requires the knitr package (version 1.2 or higher)
+
+Slide Title
+========================================
+{markdown content}
+To change the default appearence or behaviour of a slide include slide commands
+
+Slide Title
+========================================
+command: value
+{markdown content}
+Slide commands
+Example of slides commands are:
+
+title: true | false
+
+type: section | sub-section | prompt | alert
+
+incremental: true | false
+
+transition: rotate | none | linear | fade | zoom | concave
+
+transition-speed: default | slow | fast
+
+class: css_class
+
+Presentation commands
+Some commands work only on the first slide:
+
+font-import: font_url
+
+font-family: font_family
+
+css: css_url
+
+It is difficult to find an exhaustive documentation.
+
+You may load as many font-import's as you like, but you can only use one in one font_family command.
+
+To change fonts, use custom css commands in the user-define css file, and the type command on the slide you want after overwriting the .reveal CSS styles.
+
+Plotly graph
+
+References
+From RStudio support:
+
+Authoring R Presentations
+Slide Transitions and Navigation
+Customizing Fonts and Appearance
+Displaying and Distributing Presentations
+Additional references:
+
+R Markdown Reference Guide
+Presentation Ninja made using xaringan package by Yihui Xie
+
+First Slide
+========================================================
+type: exclaim
+For more details on authoring R presentations please visit [link](https://support.rstudio.com/hc/en-us/articles/200486468).
+
+- Bullet 1
+<li class= "fragment fade-in"> hello </li>
+- Bullet 2
+- Bullet 3
+
+```{r}
+summary(cars)
+```
+
+Slide With Code
+========================================================
+
+first column
+```{r}
+1:10
+```
+***
+second column
+```{r}
+(1:10)^2
+ ```
+      
+Slide With Plot
+========================================================
+
+$$
+  \int_{-\infty}^ {\infty} e^{-x^2} \, dx = \sqrt{\pi}
+  $$
+```
+   
+Slide With Plotly
+========================================================
+```{r, include=FALSE}
+library(plotly)
+ 
+x <- c(1:20)
+y <- x*x
+
+data <- data.frame(x,y)
+
+p5 <- plot_ly(data, x=~x, y=~y, name="cuadratic", type="scatter")
+
+htmlwidgets::saveWidget(p5,"plotly5.html")
+```
+ 
+<style>
+  .p_iframe iframe {
+    width:90%;
+    height:576px;
+}
+</style>
+
+<div class="p_iframe">
+<iframe frameborder="0" seamless='seamless' scrolling=no src="plotly5.html"></iframe>
+</div>
